@@ -1,0 +1,160 @@
+/* The palette of the illusion-grinder deck, so the page and the talks read as
+   one body of work. */
+:root {
+  --c-blue: #60a5fa;
+  --c-purple: #a78bfa;
+  --c-orange: #fb923c;
+  --c-green: #4ade80;
+  --bg: #0e0e0e;
+  --bg-raised: rgba(255, 255, 255, 0.025);
+  --line: rgba(255, 255, 255, 0.1);
+  --line-strong: rgba(255, 255, 255, 0.22);
+  --fg: rgba(255, 255, 255, 0.88);
+  --dim: rgba(255, 255, 255, 0.58);
+  --faint: rgba(255, 255, 255, 0.4);
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; scroll-padding-top: 4.5rem; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: Inter, system-ui, sans-serif;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; }
+
+.wrap { max-width: 56rem; margin: 0 auto; padding: 0 1.5rem; }
+
+/* Top bar */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba(14, 14, 14, 0.85);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--line);
+}
+.topbar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  height: 3.5rem;
+}
+.brand { font-weight: 600; text-decoration: none; white-space: nowrap; }
+nav { display: flex; gap: 1.25rem; }
+nav a { color: var(--dim); text-decoration: none; font-size: 0.95rem; }
+nav a:hover { color: var(--fg); }
+
+/* Sections */
+.section { padding-top: 3.5rem; }
+h2 {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--faint);
+  margin: 0 0 1.2rem;
+}
+
+.stack { display: grid; gap: 1.25rem; }
+.grid { display: grid; gap: 1.25rem; grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr)); }
+
+/* Cards */
+.card {
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 1.6rem 1.7rem;
+  background: var(--bg-raised);
+  transition: border-color 0.15s ease;
+}
+.card:hover { border-color: var(--line-strong); }
+.card h3 { font-size: 1.4rem; font-weight: 600; margin: 0 0 0.3rem; letter-spacing: -0.01em; }
+.card.project { display: flex; flex-direction: column; }
+.card.project h3 { font-size: 1.15rem; }
+.card.project .links { margin-top: auto; }
+.card h3 a { text-decoration: none; }
+.card h3 a:hover { text-decoration: underline; }
+.sub { color: var(--c-orange); font-style: italic; margin: 0 0 0.9rem; }
+.body { color: var(--dim); }
+.body p { margin: 0 0 1.1rem; }
+.body code { font-family: 'Fira Code', ui-monospace, monospace; font-size: 0.88em; }
+
+/* Tags — colours cycle so neighbouring chips differ. */
+.chips { display: flex; flex-wrap: wrap; gap: 0.5rem; list-style: none; padding: 0; margin: 0 0 1.3rem; }
+.chip {
+  --c: var(--c-blue);
+  font-family: 'Fira Code', ui-monospace, monospace;
+  font-size: 0.78rem;
+  padding: 0.2rem 0.65rem;
+  border-radius: 999px;
+  color: var(--c);
+  border: 1px solid color-mix(in srgb, var(--c) 45%, transparent);
+  background: color-mix(in srgb, var(--c) 8%, transparent);
+}
+.chip:nth-child(4n + 2) { --c: var(--c-purple); }
+.chip:nth-child(4n + 3) { --c: var(--c-orange); }
+.chip:nth-child(4n + 4) { --c: var(--c-green); }
+
+/* Buttons */
+.links { display: flex; flex-wrap: wrap; gap: 0.65rem; }
+.btn, button.copy {
+  display: inline-flex;
+  align-items: center;
+  font: inherit;
+  font-size: 0.92rem;
+  font-weight: 600;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: var(--fg);
+  background: none;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+.btn:hover, button.copy:hover { border-color: rgba(255, 255, 255, 0.4); background: rgba(255, 255, 255, 0.07); }
+.btn.primary { border-color: rgba(74, 222, 128, 0.5); color: var(--c-green); background: rgba(74, 222, 128, 0.08); }
+.btn.primary:hover { border-color: var(--c-green); background: rgba(74, 222, 128, 0.15); }
+.btn:focus-visible, button.copy:focus-visible, nav a:focus-visible { outline: 2px solid var(--c-blue); outline-offset: 2px; }
+
+/* About */
+.about { display: grid; grid-template-columns: 14rem 1fr; gap: 2rem; align-items: start; }
+.portrait { margin: 0; }
+.portrait img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+}
+.portrait figcaption { margin-top: 0.75rem; }
+.tagline { font-size: 1.1rem; margin: 0 0 1.25rem; }
+.bio { border-top: 1px solid var(--line); padding: 1rem 0 0.25rem; }
+.bio-head { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+.bio h3 { font-size: 0.95rem; font-weight: 600; margin: 0; color: var(--dim); }
+button.copy { font-size: 0.8rem; padding: 0.25rem 0.7rem; }
+button.copy.done { color: var(--c-green); border-color: rgba(74, 222, 128, 0.5); }
+.bio-text { color: var(--fg); }
+.bio-text p { margin: 0.6rem 0; }
+.bios > .links { margin-top: 1rem; }
+
+footer.wrap { margin-top: 4rem; padding-bottom: 3rem; color: var(--faint); font-size: 0.9rem; }
+footer a { color: var(--dim); }
+
+@media (max-width: 640px) {
+  .wrap { padding: 0 1rem; }
+  .brand { font-size: 0.95rem; }
+  nav { gap: 0.9rem; }
+  .card { padding: 1.3rem 1.2rem; }
+  .about { grid-template-columns: 1fr; }
+  .portrait { max-width: 12rem; }
+}

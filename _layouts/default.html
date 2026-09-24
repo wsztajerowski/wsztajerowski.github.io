@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="{{ site.lang }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ site.title }}</title>
+  <meta name="description" content="{{ site.description }}">
+  <link rel="canonical" href="{{ site.url }}{{ page.url }}">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="{{ site.title }}">
+  <meta property="og:description" content="{{ site.description }}">
+  <meta property="og:url" content="{{ site.url }}{{ page.url }}">
+  <meta property="og:image" content="{{ site.url }}{{ site.data.profile.photo_download }}">
+  <meta name="twitter:card" content="summary">
+  <link rel="icon" href="{{ '/assets/img/favicon.svg' | relative_url }}" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Fira+Code&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ '/assets/css/site.css' | relative_url }}">
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap topbar-inner">
+      <a class="brand" href="#top">{{ site.data.profile.name }}</a>
+      <nav aria-label="Sections">
+        <a href="#talks">Talks</a>
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top" class="wrap">
+    {{ content }}
+  </main>
+
+  <footer class="wrap">
+    Built with <a href="https://jekyllrb.com">Jekyll</a> ·
+    source on <a href="https://github.com/wsztajerowski/wsztajerowski.github.io">GitHub</a>
+  </footer>
+
+  <script src="{{ '/assets/js/copy.js' | relative_url }}" defer></script>
+</body>
+</html>

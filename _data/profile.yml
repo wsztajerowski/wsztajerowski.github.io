@@ -1,0 +1,35 @@
+# The About section. Everything here is placeholder until replaced.
+name: Wiktor Sztajerowski
+tagline: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+
+# Shown on the page, and offered as a download for conference organisers.
+# Put the real files in assets/img/ and update both paths.
+photo: /assets/img/photo-placeholder.svg
+photo_download: /assets/img/photo-placeholder.svg
+photo_alt: Placeholder portrait
+
+# ~50 words: for printed programmes and short speaker listings.
+short_bio: >-
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+  quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+  consequat.
+
+# ~150 words: for talk pages. Blank lines separate paragraphs.
+long_bio: |-
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
+  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+  quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+  consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+  cillum dolore eu fugiat nulla pariatur.
+
+  Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
+  deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste
+  natus error sit voluptatem accusantium doloremque laudantium, totam rem
+  aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto
+  beatae vitae dicta sunt explicabo.
+
+# Shown under the bio. Add LinkedIn, Mastodon, etc. the same way.
+links:
+  - label: GitHub
+    url: https://github.com/wsztajerowski

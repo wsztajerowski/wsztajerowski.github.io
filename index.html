@@ -1,0 +1,32 @@
+---
+layout: default
+---
+{%- comment -%}
+  Rendering only. Content lives in _talks/, _projects/ and _data/profile.yml;
+  adding a talk or project never needs a change here.
+{%- endcomment -%}
+
+<section id="talks" class="section">
+  <h2>Talks</h2>
+  {%- assign talks = site.talks | sort: "order" %}
+  <div class="stack">
+    {%- for talk in talks %}
+    {% include talk-card.html talk=talk %}
+    {%- endfor %}
+  </div>
+</section>
+
+<section id="about" class="section">
+  <h2>About</h2>
+  {% include about.html %}
+</section>
+
+<section id="projects" class="section">
+  <h2>Projects</h2>
+  {%- assign projects = site.projects | sort: "order", "last" %}
+  <div class="grid">
+    {%- for project in projects %}
+    {% include project-card.html project=project %}
+    {%- endfor %}
+  </div>
+</section>

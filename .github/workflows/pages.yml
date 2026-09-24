@@ -1,0 +1,65 @@
+# Builds, checks and publishes https://wsztajerowski.github.io/
+#
+#   pull request   build (fails on invalid _talks/_projects/profile data) + link check;
+#                  the built site is attached to the run as the `github-pages` artifact
+#   push to main   the same, then deploy
+#   every Monday   the same, then deploy — mainly to catch links that rotted since
+#                  (a renamed talk repo, a PDF that stopped being published).
+#                  A failed run emails the repo owner.
+
+name: Pages
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  schedule:
+    - cron: '17 6 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3'
+          bundler-cache: true
+
+      # _plugins/validate_data.rb runs inside this build and stops it with a
+      # list of every problem in the data files.
+      - run: bundle exec jekyll build
+        env:
+          JEKYLL_ENV: production
+
+      - name: Check links
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: --config lychee.toml --root-dir ${{ github.workspace }}/_site --no-progress '_site/**/*.html'
+          fail: true
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

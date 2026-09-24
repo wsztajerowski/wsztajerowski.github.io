@@ -1,0 +1,39 @@
+{%- comment -%}
+  The speaker kit: everything a conference organiser asks for, from one link
+  (/#about). Content comes from _data/profile.yml.
+{%- endcomment -%}
+{%- assign p = site.data.profile -%}
+<div class="about">
+  <figure class="portrait">
+    <img src="{{ p.photo | relative_url }}" alt="{{ p.photo_alt | default: p.name }}" width="320" height="320">
+    <figcaption><a class="btn" href="{{ p.photo_download | relative_url }}" download>Download photo</a></figcaption>
+  </figure>
+
+  <div class="bios">
+    <p class="tagline">{{ p.tagline }}</p>
+
+    <section class="bio" aria-labelledby="bio-short">
+      <div class="bio-head">
+        <h3 id="bio-short">Short bio</h3>
+        <button type="button" class="copy" data-copy="bio-short-text">Copy</button>
+      </div>
+      <div id="bio-short-text" class="bio-text">{{ p.short_bio | markdownify }}</div>
+    </section>
+
+    <section class="bio" aria-labelledby="bio-long">
+      <div class="bio-head">
+        <h3 id="bio-long">Long bio</h3>
+        <button type="button" class="copy" data-copy="bio-long-text">Copy</button>
+      </div>
+      <div id="bio-long-text" class="bio-text">{{ p.long_bio | markdownify }}</div>
+    </section>
+
+    {%- if p.links and p.links.size > 0 %}
+    <div class="links">
+      {%- for link in p.links %}
+      <a class="btn" href="{{ link.url }}">{{ link.label }}</a>
+      {%- endfor %}
+    </div>
+    {%- endif %}
+  </div>
+</div>
