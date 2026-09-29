@@ -4,6 +4,11 @@ order: 3
 slides: https://wsztajerowski.github.io/mongodb-in-a-nutshell/
 pdf: https://wsztajerowski.github.io/mongodb-in-a-nutshell/slides.pdf
 repo: https://github.com/wsztajerowski/mongodb-in-a-nutshell
+recordings:
+  - event: Kielce JUG
+    url: https://www.youtube.com/watch?v=PL9RJFd3RiI
+  - event: JUG Łódź
+    url: https://www.youtube.com/watch?v=2ozrpTWz2Bs
 tags: [MongoDB, NoSQL, Indexes, Replication]
 abstract:
   pl: |-

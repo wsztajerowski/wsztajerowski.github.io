@@ -18,8 +18,8 @@ module DataValidation
   SCHEMAS = {
     "talks" => {
       required: %w[title order slides pdf repo abstract],
-      optional: %w[subtitle recording tags],
-      urls: %w[slides pdf repo recording],
+      optional: %w[subtitle recordings tags],
+      urls: %w[slides pdf repo],
       localized: %w[abstract],
       translatable: %w[title subtitle],
       order_required: true,
@@ -102,6 +102,23 @@ module DataValidation
           orders[order] << file
         elsif !order.nil?
           errors << "#{file}: `order` must be a positive whole number, got #{order.inspect}"
+        end
+      end
+
+      if data.key?("recordings")
+        recs = data["recordings"]
+        if !recs.is_a?(Array) || recs.empty?
+          errors << "#{file}: `recordings` must be a list, e.g.\n" \
+                    "      recordings:\n        - event: JUG Łódź\n          url: https://www.youtube.com/watch?v=…"
+        else
+          recs.each_with_index do |rec, i|
+            unless rec.is_a?(Hash) && rec["url"].to_s.match?(URL)
+              errors << "#{file}: recordings[#{i}] needs an http(s) `url`"
+              next
+            end
+            extra = rec.keys - %w[event url]
+            errors << "#{file}: recordings[#{i}] has unknown field(s) #{extra.join(', ')} — allowed: event, url" if extra.any?
+          end
         end
       end
 
