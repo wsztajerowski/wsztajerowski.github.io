@@ -45,7 +45,9 @@ order: 1                                                      # required, unique
 slides: https://wsztajerowski.github.io/illusion-grinder/
 pdf: https://wsztajerowski.github.io/illusion-grinder/slides.pdf
 repo: https://github.com/wsztajerowski/illusion-grinder
-recording: https://www.youtube.com/watch?v=…                  # optional
+recordings:                                                   # optional, one per event
+  - event: JUG Łódź                                           # shown on the button
+    url: https://www.youtube.com/watch?v=…
 tags: [JUnit, Fray, jcstress, JMH]                            # optional
 abstract:
   pl: |-
