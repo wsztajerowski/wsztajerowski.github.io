@@ -1,0 +1,12 @@
+{%- comment -%} One project from _projects/. {%- endcomment -%}
+<article class="card project">
+  <h3><a href="{{ include.project.repo }}">{{ include.project.title }}</a></h3>
+  <div class="body">{{ include.project.content }}</div>
+  {%- include tags.html tags=include.project.tags %}
+  <div class="links">
+    <a class="btn" href="{{ include.project.repo }}">Repository</a>
+    {%- if include.project.homepage %}
+    <a class="btn" href="{{ include.project.homepage }}">Website</a>
+    {%- endif %}
+  </div>
+</article>

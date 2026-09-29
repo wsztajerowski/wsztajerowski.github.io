@@ -1,0 +1,17 @@
+{%- comment -%} One talk from _talks/. Rendered by index.html in `order`. {%- endcomment -%}
+<article class="card talk">
+  <h3>{{ include.talk.title }}</h3>
+  {%- if include.talk.subtitle %}
+  <p class="sub">{{ include.talk.subtitle }}</p>
+  {%- endif %}
+  <div class="body">{{ include.talk.content }}</div>
+  {%- include tags.html tags=include.talk.tags %}
+  <div class="links">
+    <a class="btn primary" href="{{ include.talk.slides }}">Live slides</a>
+    <a class="btn" href="{{ include.talk.pdf }}">Download PDF</a>
+    <a class="btn" href="{{ include.talk.repo }}">Repository</a>
+    {%- if include.talk.recording %}
+    <a class="btn" href="{{ include.talk.recording }}">Recording</a>
+    {%- endif %}
+  </div>
+</article>

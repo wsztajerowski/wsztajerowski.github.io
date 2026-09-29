@@ -1,0 +1,7 @@
+{%- if include.tags and include.tags.size > 0 %}
+<ul class="chips">
+  {%- for tag in include.tags %}
+  <li class="chip">{{ tag }}</li>
+  {%- endfor %}
+</ul>
+{%- endif %}

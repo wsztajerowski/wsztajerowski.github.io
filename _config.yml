@@ -1,0 +1,27 @@
+title: Wiktor Sztajerowski
+description: Talks, speaker bio and projects of Wiktor Sztajerowski.
+url: https://wsztajerowski.github.io
+baseurl: ""
+lang: en
+
+# Each talk and project is one Markdown file: front matter for the facts, the
+# body for the abstract/description. See README.md for the fields.
+collections:
+  talks:
+    output: false
+  projects:
+    output: false
+
+markdown: kramdown
+kramdown:
+  input: GFM
+
+exclude:
+  - README.md
+  - CLAUDE.md
+  - Gemfile
+  - Gemfile.lock
+  - lychee.toml
+  - docs/
+  - vendor/
+  - .github/

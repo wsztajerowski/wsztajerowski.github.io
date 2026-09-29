@@ -1,0 +1,15 @@
+# Link checker settings for .github/workflows/pages.yml.
+
+max_retries = 3
+timeout = 30
+accept = [200, 206, 429]
+
+exclude = [
+  # preconnect hints, not pages — their bare origins answer 404
+  '^https://fonts\.googleapis\.com/?$',
+  '^https://fonts\.gstatic\.com/?$',
+  # the site's own absolute URLs (canonical, og:url): not live until this
+  # very build deploys, and its files are already checked via --root-dir
+  '^https://wsztajerowski\.github\.io/?$',
+  '^https://wsztajerowski\.github\.io/assets/',
+]

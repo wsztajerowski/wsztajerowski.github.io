@@ -1,0 +1,39 @@
+{%- comment -%}
+  The speaker kit: what a conference organiser asks for, from one link
+  (/#about). Content comes from _data/profile.yml. Every language is rendered;
+  assets/js/about.js shows one at a time behind the language switch (without
+  JavaScript, all of them stay visible).
+{%- endcomment -%}
+{%- assign p = site.data.profile -%}
+<div class="about">
+  <figure class="portrait">
+    <img src="{{ p.photo | relative_url }}" alt="{{ p.photo_alt | default: p.name }}" width="480" height="480">
+    <figcaption><a class="btn" href="{{ p.photo_download | relative_url }}" download>Download photo</a></figcaption>
+  </figure>
+
+  <div class="bios">
+    {%- if p.bio.size > 1 %}
+    <div class="lang-switch" role="group" aria-label="Bio language" hidden>
+      {%- for bio in p.bio %}
+      <button type="button" data-lang="{{ bio.lang }}" aria-pressed="{% if forloop.first %}true{% else %}false{% endif %}">{{ bio.label }}</button>
+      {%- endfor %}
+    </div>
+    {%- endif %}
+
+    {%- for bio in p.bio %}
+    <section class="bio" lang="{{ bio.lang }}" data-lang="{{ bio.lang }}" aria-label="Bio ({{ bio.label }})">
+      <p class="tagline">{{ bio.tagline }}</p>
+      <div id="bio-{{ bio.lang }}" class="bio-text">{{ bio.text | markdownify }}</div>
+      <button type="button" class="copy" data-copy="bio-{{ bio.lang }}">Copy bio</button>
+    </section>
+    {%- endfor %}
+
+    {%- if p.links and p.links.size > 0 %}
+    <div class="links">
+      {%- for link in p.links %}
+      <a class="btn" href="{{ link.url }}">{{ link.label }}</a>
+      {%- endfor %}
+    </div>
+    {%- endif %}
+  </div>
+</div>
