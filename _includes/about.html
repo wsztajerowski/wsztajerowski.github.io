@@ -1,32 +1,32 @@
 {%- comment -%}
-  The speaker kit: everything a conference organiser asks for, from one link
-  (/#about). Content comes from _data/profile.yml.
+  The speaker kit: what a conference organiser asks for, from one link
+  (/#about). Content comes from _data/profile.yml. Every language is rendered;
+  assets/js/about.js shows one at a time behind the language switch (without
+  JavaScript, all of them stay visible).
 {%- endcomment -%}
 {%- assign p = site.data.profile -%}
 <div class="about">
   <figure class="portrait">
-    <img src="{{ p.photo | relative_url }}" alt="{{ p.photo_alt | default: p.name }}" width="320" height="320">
+    <img src="{{ p.photo | relative_url }}" alt="{{ p.photo_alt | default: p.name }}" width="480" height="480">
     <figcaption><a class="btn" href="{{ p.photo_download | relative_url }}" download>Download photo</a></figcaption>
   </figure>
 
   <div class="bios">
-    <p class="tagline">{{ p.tagline }}</p>
+    {%- if p.bio.size > 1 %}
+    <div class="lang-switch" role="group" aria-label="Bio language" hidden>
+      {%- for bio in p.bio %}
+      <button type="button" data-lang="{{ bio.lang }}" aria-pressed="{% if forloop.first %}true{% else %}false{% endif %}">{{ bio.label }}</button>
+      {%- endfor %}
+    </div>
+    {%- endif %}
 
-    <section class="bio" aria-labelledby="bio-short">
-      <div class="bio-head">
-        <h3 id="bio-short">Short bio</h3>
-        <button type="button" class="copy" data-copy="bio-short-text">Copy</button>
-      </div>
-      <div id="bio-short-text" class="bio-text">{{ p.short_bio | markdownify }}</div>
+    {%- for bio in p.bio %}
+    <section class="bio" lang="{{ bio.lang }}" data-lang="{{ bio.lang }}" aria-label="Bio ({{ bio.label }})">
+      <p class="tagline">{{ bio.tagline }}</p>
+      <div id="bio-{{ bio.lang }}" class="bio-text">{{ bio.text | markdownify }}</div>
+      <button type="button" class="copy" data-copy="bio-{{ bio.lang }}">Copy bio</button>
     </section>
-
-    <section class="bio" aria-labelledby="bio-long">
-      <div class="bio-head">
-        <h3 id="bio-long">Long bio</h3>
-        <button type="button" class="copy" data-copy="bio-long-text">Copy</button>
-      </div>
-      <div id="bio-long-text" class="bio-text">{{ p.long_bio | markdownify }}</div>
-    </section>
+    {%- endfor %}
 
     {%- if p.links and p.links.size > 0 %}
     <div class="links">

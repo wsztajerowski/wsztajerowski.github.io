@@ -88,8 +88,22 @@ module DataValidation
     profile = site.data["profile"]
     return errors << "_data/profile.yml is missing" unless profile.is_a?(Hash)
 
-    %w[name short_bio long_bio photo photo_download].each do |key|
+    %w[name photo photo_download].each do |key|
       errors << "_data/profile.yml: `#{key}` is required" if profile[key].to_s.strip.empty?
+    end
+
+    bios = profile["bio"]
+    if !bios.is_a?(Array) || bios.empty?
+      errors << "_data/profile.yml: `bio` must be a list with one entry per language"
+    else
+      bios.each_with_index do |bio, i|
+        missing = %w[lang label tagline text].select { |key| !bio.is_a?(Hash) || bio[key].to_s.strip.empty? }
+        errors << "_data/profile.yml: bio[#{i}] is missing #{missing.join(', ')}" if missing.any?
+      end
+      langs = bios.select { |b| b.is_a?(Hash) }.map { |b| b["lang"] }.compact
+      langs.uniq.each do |lang|
+        errors << "_data/profile.yml: bio language `#{lang}` appears more than once" if langs.count(lang) > 1
+      end
     end
     Array(profile["links"]).each_with_index do |link, i|
       unless link.is_a?(Hash) && !link["label"].to_s.empty? && link["url"].to_s.match?(URL)

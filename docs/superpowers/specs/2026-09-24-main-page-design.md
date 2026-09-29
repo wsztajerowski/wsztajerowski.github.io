@@ -21,7 +21,7 @@ self-sovereign-identity talk to GitHub.
 | Generator | Jekyll 4, built by GitHub Actions (pinned version, custom plugins allowed), not GitHub's built-in Jekyll. |
 | Data layout | One file per entry: `_talks/*.md`, `_projects/*.md`; front matter for facts, body for the abstract. Profile in `_data/profile.yml`. |
 | Talk fields | Required: `title`, `order` (unique, 1 = top), `slides`, `pdf`, `repo`. Optional: `subtitle`, `recording`, `tags`. No language field (every talk has EN and PL slides, presented in Polish). No event/date for now. |
-| About | A section on the main page (not a separate page): photo + download, short (~50 words) and long (~150 words) bio with copy buttons, links. Placeholder content until the author supplies it. |
+| About | A section on the main page (not a separate page): photo (web copy) + full-resolution download, one bio per language (EN and PL, with a tagline each) behind a PL/EN switch, a copy button, links. Short bios were dropped at the author's request (2026-09-29). |
 | Projects | benchmark-as-a-service, java-wonderland, lynx-journal. |
 | Validation | `_plugins/validate_data.rb`, run on every build: required fields, unknown keys, URL shape, unique talk `order`, non-empty body, profile completeness. |
 | Link check | lychee on the built site on every PR, push and weekly (Mondays). |

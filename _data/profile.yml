@@ -1,33 +1,40 @@
-# The About section. Everything here is placeholder until replaced.
+# The About section: photo and bio in Polish and English, switchable on the page.
 name: Wiktor Sztajerowski
-tagline: Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 
-# Shown on the page, and offered as a download for conference organisers.
-# Put the real files in assets/img/ and update both paths.
-photo: /assets/img/photo-placeholder.svg
-photo_download: /assets/img/photo-placeholder.svg
-photo_alt: Placeholder portrait
+# `photo` is the web-sized copy shown on the page; `photo_download` is the
+# full-resolution original offered to conference organisers.
+photo: /assets/img/wiktor-sztajerowski-480.jpg
+photo_download: /assets/img/wiktor-sztajerowski.png
+photo_alt: Wiktor Sztajerowski
 
-# ~50 words: for printed programmes and short speaker listings.
-short_bio: >-
-  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-  quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-  consequat.
-
-# ~150 words: for talk pages. Blank lines separate paragraphs.
-long_bio: |-
-  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-  quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-  consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-  cillum dolore eu fugiat nulla pariatur.
-
-  Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-  deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste
-  natus error sit voluptatem accusantium doloremque laudantium, totam rem
-  aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto
-  beatae vitae dicta sunt explicabo.
+# One entry per language; the first one is shown by default. Blank lines in
+# `text` separate paragraphs.
+bio:
+  - lang: en
+    label: EN
+    tagline: Developer, trainer and consultant. Co-organiser of the Łódź JUG.
+    text: |-
+      For 15 years he has been breaking and fixing systems for a living, trying
+      not to lose his mind along the way. A developer who isn't afraid of messy
+      code, a trainer who isn't afraid of hard questions, and a consultant who,
+      for the right fee, will tell you with a smile that "it depends". As
+      co-organiser of the Łódź JUG, he has for years made sure the local
+      community has somewhere to swap production traumas over free pizza. In his
+      spare time he deconstructs the sensory profiles of speciality-grade coffee
+      beans, and drinks his coffee only from a tasting bowl, because there's no
+      room in life for a bad pour-over (or missing tests).
+  - lang: pl
+    label: PL
+    tagline: Programista, trener i konsultant. Współorganizator łódzkiego JUG-a.
+    text: |-
+      Od 15 lat zawodowo psuje i naprawia systemy, starając się przy tym nie
+      zwariować. Programista, który nie boi się brudnego kodu, trener, który nie
+      boi się trudnych pytań i konsultant, który za odpowiednie wynagrodzenie z
+      uśmiechem powie Ci, że „to zależy”. Jako współorganizator łódzkiego JUG-a
+      od lat dba o to, by lokalna społeczność miała gdzie wymieniać się traumami
+      z produkcji przy darmowej pizzy. Wolne chwile spędza na dekonstrukcji
+      profilu sensorycznego ziaren z segmentu speciality — kawę pije wyłącznie z
+      czarki, bo na kiepski przelew (i brak testów) nie ma w życiu miejsca.
 
 # Shown under the bio. Add LinkedIn, Mastodon, etc. the same way.
 links:

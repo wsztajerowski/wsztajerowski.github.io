@@ -52,10 +52,15 @@ One or two sentences on what it is.
 
 ### Update the bio or photo
 
-Edit `_data/profile.yml`: `tagline`, `short_bio` (about 50 words), `long_bio`
-(about 150 words, blank lines between paragraphs) and `links`. For the photo,
-put a square image in `assets/img/` and point `photo` at it; point
-`photo_download` at a high-resolution version for organisers.
+Edit `_data/profile.yml`. `bio` has one entry per language (`lang`, `label`
+for the switch button, `tagline`, `text`); the first entry is shown by default
+and the page gets a language switch as soon as there are two. For the photo,
+put the full-resolution original in `assets/img/` as `photo_download` (offered
+to organisers) and a small web copy (~480 px) as `photo`:
+
+```bash
+sips -s format jpeg -s formatOptions 82 -Z 480 original.png --out assets/img/<name>-480.jpg
+```
 
 ### Remove something
 
@@ -72,8 +77,9 @@ stops the build with a list of problems if:
 * a link isn't an `http(s)://` URL;
 * two talks share an `order`, or `order` isn't a positive whole number;
 * the abstract/description body is empty;
-* `_data/profile.yml` is missing its name, bios or photo, or a link lacks a
-  label or URL.
+* `_data/profile.yml` is missing its name or photo, a bio entry lacks its
+  `lang`, `label`, `tagline` or `text`, a language appears twice, or a link
+  lacks a label or URL.
 
 ## CI and publishing
 

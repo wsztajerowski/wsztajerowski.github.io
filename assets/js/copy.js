@@ -2,6 +2,7 @@
 // cleanly into a call-for-papers form.
 document.querySelectorAll('button.copy[data-copy]').forEach((button) => {
   button.addEventListener('click', async () => {
+    const label = button.textContent
     const source = document.getElementById(button.dataset.copy)
     const text = source.innerText.trim()
     try {
@@ -16,6 +17,6 @@ document.querySelectorAll('button.copy[data-copy]').forEach((button) => {
       button.textContent = 'Selected'
     }
     button.classList.add('done')
-    setTimeout(() => { button.textContent = 'Copy'; button.classList.remove('done') }, 1800)
+    setTimeout(() => { button.textContent = label; button.classList.remove('done') }, 1800)
   })
 })
