@@ -8,8 +8,11 @@ exclude = [
   # preconnect hints, not pages — their bare origins answer 404
   '^https://fonts\.googleapis\.com/?$',
   '^https://fonts\.gstatic\.com/?$',
-  # the site's own absolute URLs (canonical, og:url): not live until this
-  # very build deploys, and its files are already checked via --root-dir
+  # the site's own absolute URLs (canonical, hreflang, og:url): not live until
+  # this very build deploys, and the same pages are already checked through
+  # the tab and language links via --root-dir. Talk decks (/<repo>/) are
+  # NOT excluded — those must stay checked.
   '^https://wsztajerowski\.github\.io/?$',
   '^https://wsztajerowski\.github\.io/assets/',
+  '^https://wsztajerowski\.github\.io/(talks|projects|about)/',
 ]

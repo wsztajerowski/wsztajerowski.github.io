@@ -1,17 +1,19 @@
-{%- comment -%} One talk from _talks/. Rendered by index.html in `order`. {%- endcomment -%}
+{%- comment -%} One talk from _talks/, in the page's language. {%- endcomment -%}
+{%- assign talk = include.talk -%}
+{%- assign title = talk.title[include.lang] | default: talk.title -%}
 <article class="card talk">
-  <h3>{{ include.talk.title }}</h3>
-  {%- if include.talk.subtitle %}
-  <p class="sub">{{ include.talk.subtitle }}</p>
+  <h2>{{ title }}</h2>
+  {%- if talk.subtitle %}
+  <p class="sub">{{ talk.subtitle[include.lang] }}</p>
   {%- endif %}
-  <div class="body">{{ include.talk.content }}</div>
-  {%- include tags.html tags=include.talk.tags %}
+  <div class="body">{{ talk.abstract[include.lang] | markdownify }}</div>
+  {%- include tags.html tags=talk.tags %}
   <div class="links">
-    <a class="btn primary" href="{{ include.talk.slides }}">Live slides</a>
-    <a class="btn" href="{{ include.talk.pdf }}">Download PDF</a>
-    <a class="btn" href="{{ include.talk.repo }}">Repository</a>
-    {%- if include.talk.recording %}
-    <a class="btn" href="{{ include.talk.recording }}">Recording</a>
+    <a class="btn primary" href="{{ talk.slides }}">{{ include.t.live_slides }}</a>
+    <a class="btn" href="{{ talk.pdf }}">{{ include.t.download_pdf }}</a>
+    <a class="btn" href="{{ talk.repo }}">{{ include.t.repository }}</a>
+    {%- if talk.recording %}
+    <a class="btn" href="{{ talk.recording }}">{{ include.t.recording }}</a>
     {%- endif %}
   </div>
 </article>
