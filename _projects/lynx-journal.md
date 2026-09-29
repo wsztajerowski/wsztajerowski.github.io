@@ -3,7 +3,6 @@ title: Lynx Journal
 repo: https://github.com/wsztajerowski/lynx-journal
 order: 3
 tags: [Storage, NIO, JMH]
-draft: true  # written from the code; the repo has no README yet
 ---
 An append-only journal for Java: records written to a file channel in batches,
 each with a header and checksum, readable back by location. Comes with

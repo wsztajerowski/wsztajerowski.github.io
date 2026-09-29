@@ -6,7 +6,6 @@ slides: https://wsztajerowski.github.io/self-sovereign-identity/
 pdf: https://wsztajerowski.github.io/self-sovereign-identity/slides.pdf
 repo: https://github.com/wsztajerowski/self-sovereign-identity
 tags: [DID, Verifiable Credentials, DIDComm, ZKP]
-draft: true  # abstract written from the deck; replace with your own
 ---
 What if your identity belonged to you, not to the sites you log in to? Through
 Paweł's stories — a messenger without a server, an e-identity, an account at
