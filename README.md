@@ -57,7 +57,8 @@ abstract:
 
 **`order` decides where the talk appears: `1` is at the top.** It is required
 and must be unique, so a new talk usually means bumping the others by one.
-`title` may also be plain text when it's the same in both languages.
+`title` and `subtitle` may also be plain text when they stay the same in both
+languages (as the SSI talk's original title does).
 
 Open a PR. The check builds the site, validates the file and tests every
 link, including the new slides, PDF and repo, so **publish the talk's own

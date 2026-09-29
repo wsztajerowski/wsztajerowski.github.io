@@ -1,10 +1,6 @@
 ---
-title:
-  pl: Samosuwerenna tożsamość
-  en: Self-sovereign identity
-subtitle:
-  pl: Przynieś własną tożsamość
-  en: Bring your own identity
+title: Self-sovereign identity
+subtitle: Bring your own identity
 order: 2
 slides: https://wsztajerowski.github.io/self-sovereign-identity/
 pdf: https://wsztajerowski.github.io/self-sovereign-identity/slides.pdf

@@ -4,7 +4,8 @@
 <article class="card talk">
   <h2>{{ title }}</h2>
   {%- if talk.subtitle %}
-  <p class="sub">{{ talk.subtitle[include.lang] }}</p>
+  {%- assign subtitle = talk.subtitle[include.lang] | default: talk.subtitle %}
+  <p class="sub">{{ subtitle }}</p>
   {%- endif %}
   <div class="body">{{ talk.abstract[include.lang] | markdownify }}</div>
   {%- include tags.html tags=talk.tags %}

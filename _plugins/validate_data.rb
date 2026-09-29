@@ -13,13 +13,15 @@ module DataValidation
   URL = %r{\Ahttps?://[^\s/$.?#][^\s]*\z}
 
   # `localized`: a map with one non-empty text per site language.
-  # `title` may also be a plain string, for names that don't translate.
+  # `translatable`: either that map, or plain text for words that stay the
+  # same in every language (a product name, a talk's original title).
   SCHEMAS = {
     "talks" => {
       required: %w[title order slides pdf repo abstract],
       optional: %w[subtitle recording tags],
       urls: %w[slides pdf repo recording],
-      localized: %w[subtitle abstract],
+      localized: %w[abstract],
+      translatable: %w[title subtitle],
       order_required: true,
     },
     "projects" => {
@@ -27,6 +29,7 @@ module DataValidation
       optional: %w[order homepage tags],
       urls: %w[repo homepage],
       localized: %w[description],
+      translatable: %w[title],
       order_required: false,
     },
   }.freeze
@@ -78,10 +81,13 @@ module DataValidation
       schema[:localized].each do |key|
         check_localized(file, key, data[key], langs, errors) unless data[key].nil?
       end
-      if data["title"].is_a?(Hash)
-        check_localized(file, "title", data["title"], langs, errors)
-      elsif !data["title"].nil? && !data["title"].is_a?(String)
-        errors << "#{file}: `title` must be text, or one text per language"
+      schema[:translatable].each do |key|
+        value = data[key]
+        if value.is_a?(Hash)
+          check_localized(file, key, value, langs, errors)
+        elsif !value.nil? && !value.is_a?(String)
+          errors << "#{file}: `#{key}` must be text, or one text per language"
+        end
       end
 
       schema[:urls].each do |key|

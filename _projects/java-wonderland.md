@@ -5,8 +5,8 @@ order: 2
 tags: [Concurrency, JMH]
 description:
   pl: |-
-    Klasyczne algorytmy współbieżne zaimplementowane w Javie od zera — zamek
-    Dekkera, cykliczny bufor Lamporta (jeden producent, jeden konsument)
+    Klasyczne algorytmy współbieżne zaimplementowane w Javie od zera — Dekker's
+    lock, cykliczny bufor Lamporta (jeden producent, jeden konsument)
     i bufor oparty na blokadach — każdy z testami i benchmarkami JMH
     porównującymi je z `synchronized` i ze sobą nawzajem.
   en: |-
