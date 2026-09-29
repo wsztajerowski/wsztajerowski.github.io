@@ -7,18 +7,34 @@ repo: https://github.com/wsztajerowski/mongodb-in-a-nutshell
 tags: [MongoDB, NoSQL, Indexes, Replication]
 abstract:
   pl: |-
-    Krótki przegląd MongoDB dla osób, które myślą tabelami. Czym baza
-    dokumentowa różni się od relacyjnej, jak pojęcia z SQL przekładają się na
-    MongoDB, kiedy osadzać dokumenty, a kiedy stosować referencje, jak działają
-    indeksy i zapytania pokryte (covered queries), co dają replikacja i write
-    concern oraz jak żyć bez transakcji obejmujących wiele dokumentów — a na
-    koniec uczciwa lista zalet, wad i przypadków, w których MongoDB to zły
-    wybór.
+    Obiło Ci się o uszy MongoDB, ale nie masz zielonego pojęcia, jak (i kiedy)
+    jej używać? Pomogę Ci zrozumieć podstawowe koncepcje MongoDB i to, czym
+    różni się od świata relacyjnych baz danych.
+
+    Podczas tej sesji spojrzymy na MongoDB z perspektywy programisty Javy
+    i odpowiemy na kilka pytań. Do czego możemy używać MongoDB? Co może dać nam
+    MongoDB, czego nie dadzą tradycyjne relacyjne bazy danych? Kiedy jej NIE
+    używać?
+
+    Dodatkowo spróbuję wyjaśnić, jak transakcje i ograniczenia (constraints)
+    wyglądają z punktu widzenia MongoDB i jakie niosą ze sobą konsekwencje.
+
+    Na koniec porozmawiamy o językach silnie typowanych i bazach danych bez
+    schematu (schemaless).
   en: |-
-    A short tour of MongoDB for people who think in tables. What makes a
-    document database different from an RDBMS, how SQL terms map onto MongoDB,
-    when to embed and when to reference, how indexes and covered queries work,
-    what replication and write concern buy you, and how to live without
-    multi-document transactions — ending with an honest list of pros, cons, and
-    the cases where MongoDB is the wrong choice.
+    So you have heard about MongoDB but have no bloody idea how (or when) use
+    it? Let me help you in understanding basic concepts of MongoDB and
+    differences from RDBMS world.
+
+    In this session we are going to look at MongoDB from Java Developer
+    perspective and answer a few questions. What we can use MongoDB for? What
+    could MongoDB give us and traditional relational databases not? When NOT to
+    use it?
+
+    In addition I will try to clarify how transactions and constraints concepts
+    look like from MongoDB point of view and what consequences are connected
+    with them.
+
+    Last but not least we’ll talk about Strongly Typed Languages and Schemaless
+    DB’s.
 ---
