@@ -27,19 +27,18 @@ abstract:
     Na koniec porozmawiamy o językach silnie typowanych i bazach danych bez
     schematu (schemaless).
   en: |-
-    So you have heard about MongoDB but have no bloody idea how (or when) use
-    it? Let me help you in understanding basic concepts of MongoDB and
-    differences from RDBMS world.
+    So you have heard about MongoDB but have no bloody idea how (or when) to
+    use it? Let me help you understand the basic concepts of MongoDB and how it
+    differs from the RDBMS world.
 
-    In this session we are going to look at MongoDB from Java Developer
-    perspective and answer a few questions. What we can use MongoDB for? What
-    could MongoDB give us and traditional relational databases not? When NOT to
-    use it?
+    In this session we are going to look at MongoDB from a Java developer's
+    perspective and answer a few questions. What can we use MongoDB for? What
+    can MongoDB give us that traditional relational databases can't? When NOT
+    to use it?
 
-    In addition I will try to clarify how transactions and constraints concepts
-    look like from MongoDB point of view and what consequences are connected
-    with them.
+    In addition, I will try to clarify what transactions and constraints look
+    like from MongoDB's point of view and what consequences come with them.
 
-    Last but not least we’ll talk about Strongly Typed Languages and Schemaless
-    DB’s.
+    Last but not least, we'll talk about strongly typed languages and
+    schemaless databases.
 ---
