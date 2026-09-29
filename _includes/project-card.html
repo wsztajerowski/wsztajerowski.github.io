@@ -1,12 +1,14 @@
-{%- comment -%} One project from _projects/. {%- endcomment -%}
+{%- comment -%} One project from _projects/, in the page's language. {%- endcomment -%}
+{%- assign project = include.project -%}
+{%- assign title = project.title[include.lang] | default: project.title -%}
 <article class="card project">
-  <h3><a href="{{ include.project.repo }}">{{ include.project.title }}</a></h3>
-  <div class="body">{{ include.project.content }}</div>
-  {%- include tags.html tags=include.project.tags %}
+  <h2><a href="{{ project.repo }}">{{ title }}</a></h2>
+  <div class="body">{{ project.description[include.lang] | markdownify }}</div>
+  {%- include tags.html tags=project.tags %}
   <div class="links">
-    <a class="btn" href="{{ include.project.repo }}">Repository</a>
-    {%- if include.project.homepage %}
-    <a class="btn" href="{{ include.project.homepage }}">Website</a>
+    <a class="btn" href="{{ project.repo }}">{{ include.t.repository }}</a>
+    {%- if project.homepage %}
+    <a class="btn" href="{{ project.homepage }}">{{ include.t.website }}</a>
     {%- endif %}
   </div>
 </article>

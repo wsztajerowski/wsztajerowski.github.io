@@ -1,0 +1,60 @@
+# Interface text in every language the site speaks. The first language is the
+# default: its pages live at /<tab>/, the others at /<tab>/<lang>/.
+# Every language must define the same keys (the build checks this).
+
+languages: [pl, en]
+
+# Tab order in the top bar. `path` is shared by all languages.
+tabs:
+  - key: talks
+    path: /talks/
+  - key: projects
+    path: /projects/
+  - key: about
+    path: /about/
+
+pl:
+  label: PL
+  site_name: Wiktor Sztajerowski — prezentacje i projekty
+  description: Prezentacje, projekty i bio Wiktora Sztajerowskiego.
+  tab_talks: Prezentacje
+  tab_projects: Projekty
+  tab_about: O mnie
+  nav_label: Sekcje
+  language_label: Język
+  theme_to_light: Włącz jasny motyw
+  theme_to_dark: Włącz ciemny motyw
+  live_slides: Slajdy online
+  download_pdf: Pobierz PDF
+  repository: Repozytorium
+  recording: Nagranie
+  website: Strona
+  download_photo: Pobierz zdjęcie
+  copy_bio: Kopiuj bio
+  copied: Skopiowano
+  selected: Zaznaczono
+  built_with: Zbudowane w
+  source_on: kod źródłowy na
+
+en:
+  label: EN
+  site_name: Wiktor Sztajerowski — talks & code
+  description: Talks, projects and bio of Wiktor Sztajerowski.
+  tab_talks: Talks
+  tab_projects: Projects
+  tab_about: About
+  nav_label: Sections
+  language_label: Language
+  theme_to_light: Switch to light theme
+  theme_to_dark: Switch to dark theme
+  live_slides: Live slides
+  download_pdf: Download PDF
+  repository: Repository
+  recording: Recording
+  website: Website
+  download_photo: Download photo
+  copy_bio: Copy bio
+  copied: Copied
+  selected: Selected
+  built_with: Built with
+  source_on: source on

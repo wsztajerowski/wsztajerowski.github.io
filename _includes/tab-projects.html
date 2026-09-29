@@ -1,0 +1,8 @@
+{%- comment -%} Projects tab: _projects/ entries, one per row; unordered ones last. {%- endcomment -%}
+{%- assign projects = site.projects | sort: "order", "last" %}
+<h1 class="visually-hidden">{{ include.t.tab_projects }}</h1>
+<div class="stack">
+  {%- for project in projects %}
+  {% include project-card.html project=project lang=include.lang t=include.t %}
+  {%- endfor %}
+</div>

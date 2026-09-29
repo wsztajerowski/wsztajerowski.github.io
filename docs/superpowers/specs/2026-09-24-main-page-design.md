@@ -32,3 +32,14 @@ self-sovereign-identity talk to GitHub.
 
 Event/date per talk, upcoming talks, a custom domain, per-talk pages, search or
 filtering.
+
+## Revision 2026-09-29 — tabs, languages, theme
+
+| Topic | Decision |
+|---|---|
+| Structure | Three tabs instead of one long page: Talks (default), Projects, About. |
+| Languages | Whole site in Polish (default) and English. URLs: `/<tab>/` (PL) and `/<tab>/en/` (EN), with `/` rendering Talks in Polish. Static pages, so every link opens in its language and works without JavaScript. |
+| Switches | PL/EN and a light/dark theme toggle in the top-right corner. The theme follows the system until chosen, then is remembered (localStorage), applied before first paint. |
+| Site name | "Wiktor Sztajerowski — prezentacje i projekty" / "Wiktor Sztajerowski — talks & code". |
+| Data | Each talk/project stays one file, with `pl:`/`en:` maps for every visitor-facing text; interface text in `_data/i18n.yml`; bio per language in `_data/profile.yml`. The validator requires every language everywhere. |
+| Projects | One card per row (a list), not a grid. |

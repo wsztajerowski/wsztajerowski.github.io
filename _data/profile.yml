@@ -1,4 +1,5 @@
-# The About section: photo and bio in Polish and English, switchable on the page.
+# The About tab: photo and bio, with one bio for each language listed in
+# _data/i18n.yml; each language's About page shows its own.
 name: Wiktor Sztajerowski
 
 # `photo` is the web-sized copy shown on the page; `photo_download` is the
@@ -7,11 +8,9 @@ photo: /assets/img/wiktor-sztajerowski-480.jpg
 photo_download: /assets/img/wiktor-sztajerowski.png
 photo_alt: Wiktor Sztajerowski
 
-# One entry per language; the first one is shown by default. Blank lines in
-# `text` separate paragraphs.
+# One entry per language. Blank lines in `text` separate paragraphs.
 bio:
   - lang: pl
-    label: PL
     tagline: Programista, trener i konsultant. Współorganizator łódzkiego JUG-a.
     text: |-
       Od 15 lat zawodowo psuje i naprawia systemy, starając się przy tym nie
@@ -23,7 +22,6 @@ bio:
       profilu sensorycznego ziaren z segmentu speciality — kawę pije wyłącznie z
       czarki, bo na kiepski przelew (i brak testów) nie ma w życiu miejsca.
   - lang: en
-    label: EN
     tagline: Developer, trainer and consultant. Co-organiser of the Łódź JUG.
     text: |-
       For 15 years he has been breaking and fixing systems for a living, trying
