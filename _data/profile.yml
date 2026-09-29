@@ -10,6 +10,18 @@ photo_alt: Wiktor Sztajerowski
 # One entry per language; the first one is shown by default. Blank lines in
 # `text` separate paragraphs.
 bio:
+  - lang: pl
+    label: PL
+    tagline: Programista, trener i konsultant. Współorganizator łódzkiego JUG-a.
+    text: |-
+      Od 15 lat zawodowo psuje i naprawia systemy, starając się przy tym nie
+      zwariować. Programista, który nie boi się brudnego kodu, trener, który nie
+      boi się trudnych pytań i konsultant, który za odpowiednie wynagrodzenie z
+      uśmiechem powie Ci, że „to zależy”. Jako współorganizator łódzkiego JUG-a
+      od lat dba o to, by lokalna społeczność miała gdzie wymieniać się traumami
+      z produkcji przy darmowej pizzy. Wolne chwile spędza na dekonstrukcji
+      profilu sensorycznego ziaren z segmentu speciality — kawę pije wyłącznie z
+      czarki, bo na kiepski przelew (i brak testów) nie ma w życiu miejsca.
   - lang: en
     label: EN
     tagline: Developer, trainer and consultant. Co-organiser of the Łódź JUG.
@@ -23,19 +35,6 @@ bio:
       spare time he deconstructs the sensory profiles of speciality-grade coffee
       beans, and drinks his coffee only from a tasting bowl, because there's no
       room in life for a bad pour-over (or missing tests).
-  - lang: pl
-    label: PL
-    tagline: Programista, trener i konsultant. Współorganizator łódzkiego JUG-a.
-    text: |-
-      Od 15 lat zawodowo psuje i naprawia systemy, starając się przy tym nie
-      zwariować. Programista, który nie boi się brudnego kodu, trener, który nie
-      boi się trudnych pytań i konsultant, który za odpowiednie wynagrodzenie z
-      uśmiechem powie Ci, że „to zależy”. Jako współorganizator łódzkiego JUG-a
-      od lat dba o to, by lokalna społeczność miała gdzie wymieniać się traumami
-      z produkcji przy darmowej pizzy. Wolne chwile spędza na dekonstrukcji
-      profilu sensorycznego ziaren z segmentu speciality — kawę pije wyłącznie z
-      czarki, bo na kiepski przelew (i brak testów) nie ma w życiu miejsca.
-
 # Shown under the bio. Add LinkedIn, Mastodon, etc. the same way.
 links:
   - label: GitHub
