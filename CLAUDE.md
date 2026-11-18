@@ -12,8 +12,8 @@ not by GitHub's built-in Jekyll, so `_plugins/` runs and the Jekyll version is p
 
 ## Data vs rendering
 
-- **Data:** `_talks/*.md`, `_projects/*.md` (front matter only; every visitor-facing text is a
-  `pl:`/`en:` map), `_data/profile.yml` (bio per language) and `_data/i18n.yml` (interface text,
+- **Data:** `_data/talks.yml`, `_data/projects.yml` (one list entry per talk/project; every
+  visitor-facing text is a `pl:`/`en:` map), `_data/profile.yml` (bio per language) and `_data/i18n.yml` (interface text,
   language list, tab order). README.md documents every field.
 - **Rendering:** `_layouts/default.html` (top bar, switches, URLs), `_includes/tab-*.html`,
   `_includes/{talk-card,project-card,tags}.html`, `assets/`, and one-line pages per tab ×
@@ -26,8 +26,8 @@ not by GitHub's built-in Jekyll, so `_plugins/` runs and the Jekyll version is p
 
 ## Rules
 
-- Talks sort by `order` ascending (1 = top); `order` is required and unique. The validator
-  enforces this. Projects' `order` is optional; unordered ones sort last.
+- Talks and projects appear in the order they are listed in their data file; there is no
+  `order` field. A talk needs only `title`; every other field is optional.
 - Show the author any text you generate or translate before it is merged; they review wording.
 - Colours are tokens in `assets/css/site.css` with a light and a dark set; never hard-code a
   colour in a rule.

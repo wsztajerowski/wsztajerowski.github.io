@@ -27,7 +27,8 @@ pl:
   live_slides: Slajdy online
   download_pdf: Pobierz PDF
   repository: Repozytorium
-  recording: Nagranie
+  recordings: Nagrania
+  date_format: "%d.%m.%Y"
   website: Strona
   download_photo: Pobierz zdjęcie
   copy_bio: Kopiuj bio
@@ -50,7 +51,8 @@ en:
   live_slides: Live slides
   download_pdf: Download PDF
   repository: Repository
-  recording: Recording
+  recordings: Recordings
+  date_format: "%-d %b %Y"
   website: Website
   download_photo: Download photo
   copy_bio: Copy bio

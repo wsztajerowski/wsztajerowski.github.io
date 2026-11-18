@@ -1,8 +1,7 @@
-{%- comment -%} Projects tab: _projects/ entries, one per row; unordered ones last. {%- endcomment -%}
-{%- assign projects = site.projects | sort: "order", "last" %}
+{%- comment -%} Projects tab: every entry of _data/projects.yml, in the order listed. {%- endcomment -%}
 <h1 class="visually-hidden">{{ include.t.tab_projects }}</h1>
 <div class="stack">
-  {%- for project in projects %}
+  {%- for project in site.data.projects %}
   {% include project-card.html project=project lang=include.lang t=include.t %}
   {%- endfor %}
 </div>

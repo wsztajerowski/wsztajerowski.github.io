@@ -1,0 +1,49 @@
+# The Projects tab, top to bottom: the site shows projects in the order they
+# are listed here. README.md documents every field.
+
+- title: Benchmark as a Service (BaaS)
+  repo: https://github.com/wsztajerowski/benchmark-as-a-service
+  tags: [JMH, jcstress, AWS]
+  description:
+    pl: |-
+      Uruchamia benchmarki JMH i JCStress na jednorazowych instancjach EC2 jednym
+      poleceniem — na sprzęcie, który nie jest Twoim laptopem. CLI `baas` samo
+      tworzy potrzebną infrastrukturę AWS, uruchamia runnera, czeka na
+      zakończenie i wypisuje wyniki; pomiary trafiają do DynamoDB, a surowe wyniki
+      i artefakty profilowania do S3.
+    en: |-
+      Run JMH and JCStress benchmarks on throwaway EC2 instances, from one
+      command, on hardware that isn't your laptop. The `baas` CLI provisions its
+      own AWS infrastructure, launches the runner, polls for completion and prints
+      the numbers; measurements land in DynamoDB, raw results and profiling
+      artifacts in S3.
+
+- title: Java Wonderland
+  repo: https://github.com/wsztajerowski/java-wonderland
+  tags: [Concurrency, JMH]
+  description:
+    pl: |-
+      Klasyczne algorytmy współbieżne zaimplementowane w Javie od zera — Dekker's
+      lock, cykliczny bufor Lamporta (jeden producent, jeden konsument)
+      i bufor oparty na blokadach — każdy z testami i benchmarkami JMH
+      porównującymi je z `synchronized` i ze sobą nawzajem.
+    en: |-
+      Classic concurrency algorithms implemented from scratch in Java — Dekker's
+      lock, Lamport's single-producer/single-consumer circular buffer and a
+      lock-based buffer — each with tests and JMH benchmarks comparing them with
+      `synchronized` and with each other.
+
+- title: Lynx Journal
+  repo: https://github.com/wsztajerowski/lynx-journal
+  tags: [Storage, NIO, JMH]
+  description:
+    pl: |-
+      Dziennik typu append-only dla Javy: rekordy zapisywane partiami do kanału
+      pliku, każdy z nagłówkiem i sumą kontrolną, odczytywane po lokalizacji.
+      Zawiera testy współbieżności i read-your-own-writes oraz benchmarki JMH
+      dla samego zapisu, odczytu ostatniego rekordu i pełnego cyklu zapis–odczyt.
+    en: |-
+      An append-only journal for Java: records written to a file channel in
+      batches, each with a header and checksum, readable back by location. Comes
+      with concurrency and read-your-own-writes tests, and JMH benchmarks for
+      write-only, read-last-record and round-trip workloads.

@@ -1,0 +1,223 @@
+# The Talks tab, top to bottom: the site shows talks in the order they are
+# listed here. To add a talk, paste a new entry where it should appear.
+# Only `title` is required; README.md documents every field.
+
+- title:
+    pl: Maszynka do Mielenia Złudzeń
+    en: The Illusion Grinder
+  subtitle:
+    pl: Cztery Kręgi Testowego Piekła dla Kodu Współbieżnego w Javie
+    en: Four circles of testing hell for concurrent Java
+  slides: https://wsztajerowski.github.io/illusion-grinder/
+  pdf: https://wsztajerowski.github.io/illusion-grinder/slides.pdf
+  repo: https://github.com/wsztajerowski/illusion-grinder
+  tags: [JUnit, Fray, jcstress, JMH]
+  abstract:
+    pl: |-
+      Twój kod współbieżny to stabilna konstrukcja czy domek z kart, któremu
+      akurat nie wieje? Podczas prezentacji przepuścimy przykładowy kawałek
+      współbieżnego kodu przez autorski framework — maszynkę do mielenia złudzeń.
+      To cztery kręgi testowego piekła, gdzie każda faza to rygorystyczna bramka,
+      którą trzeba zaliczyć, by iść dalej: od naiwnych Unit Testów, przez chłostę
+      przeplotów we Fray i brutalny wycisk na sprzęcie w jcstress, aż po
+      wydajnościowy rachunek sumienia w JMH. Zero magii, sama brutalna inżynieria
+      i odrobina współbieżnego sadyzmu.
+    en: |-
+      Is your concurrent code a solid structure, or a house of cards the wind
+      simply hasn't hit yet? In this talk we feed a piece of concurrent code into
+      a machine built for grinding illusions: four circles of testing hell, where
+      every stage is a gate you must pass before you're allowed any deeper — from
+      naive unit tests, through a flogging of interleavings in Fray and a brutal
+      workout on real hardware in jcstress, all the way to a performance
+      examination of conscience in JMH. No magic. Just brutal engineering and a
+      touch of concurrent sadism.
+
+- title: Self-Sovereign Identity
+  subtitle:
+    pl: Rewolucja w cyfrowych tożsamościach
+    en: Bring your own identity
+  slides: https://wsztajerowski.github.io/self-sovereign-identity/
+  pdf: https://wsztajerowski.github.io/self-sovereign-identity/slides.pdf
+  repo: https://github.com/wsztajerowski/self-sovereign-identity
+  recordings:
+    - event: bITconf
+      date: 2023-09-22
+      url: https://www.youtube.com/watch?v=d9WCrvMB-bM
+    - event: Craft-IT
+      date: 2023-06-03
+      url: https://www.youtube.com/watch?v=ydNwnDwAyFI
+  tags: [DID, Verifiable Credentials, DIDComm, ZKP]
+  abstract:
+    pl: |-
+      Obecnie w kontekście zarządzania naszymi cyfrowymi tożsamościami królują
+      Facebook i Google ze swoimi wtyczkami „Zaloguj z…”. Takie podejście do
+      zarządzania danymi osobowymi niesie sporo niebezpieczeństw, a nade
+      wszystko oddala użytkownika od jego własnych cyfrowych tożsamości.
+
+      Self-Sovereign Identity (SSI) to ruch mający na celu oddać użytkownikowi
+      kontrolę nad własną cyfrową tożsamością oraz tym, komu i jakie dane
+      przekazuje. Pod parasolem SSI, poza ruchem społecznym, kryje się także
+      stos technologiczny implementujący zdecentralizowany model zarządzania
+      tożsamościami.
+
+      Podczas prezentacji porównamy modele zarządzania tożsamościami,
+      sprawdzimy, czym SSI różni się od istniejących rozwiązań, i – co
+      najistotniejsze – zagłębimy się w szczegóły samego SSI. Pomówimy o DID,
+      Verifiable Credentials, Governance Frameworks i o tym, co w tym
+      wszystkim robi blockchain.
+    en: |-
+      Today, when it comes to managing our digital identities, Facebook and
+      Google reign supreme with their "Sign in with…" buttons. This approach to
+      handling personal data carries plenty of risks and, above all, distances
+      users from their own digital identities.
+
+      Self-Sovereign Identity (SSI) is a movement that aims to give users back
+      control over their own digital identity, and over who receives which of
+      their data. Beyond the social movement, the SSI umbrella also covers a
+      technology stack that implements a decentralized model of identity
+      management.
+
+      In this talk we'll compare identity management models, look at how SSI
+      differs from existing solutions and, most importantly, dig into the
+      details of SSI itself. We'll talk about DIDs, Verifiable Credentials,
+      Governance Frameworks, and what blockchain is doing in all of this.
+
+- title:
+    pl: W poszukiwaniu zaginionej wydajności
+    en: In Search of Lost Performance
+  subtitle:
+    pl: czyli słów kilka o tym, jak podkręcić aplikacje działające na MongoDB
+    en: or a few words on how to speed up applications running on MongoDB
+  recordings:
+    - event: "Kielce JUG #20"
+      date: 2019-02-21
+      url: https://www.youtube.com/watch?v=rJl9DjV5N1I
+    - event: JDD
+      date: 2017-10-04
+      url: https://www.youtube.com/watch?v=Z5V5u4_s31E
+  tags: [MongoDB, Performance, Indexes, Sharding]
+  abstract:
+    pl: |-
+      Chyba każdy z nas dotarł na projekcie do momentu, gdy wydajność leci na
+      łeb na szyję. Wtedy zaczyna się polowanie na czarownice, zwane także
+      poszukiwaniem utraconego graala. Postaram się zabrać was w jedną z takich
+      podróży – poszukamy rezerw wydajności w MongoDB. Przyjrzymy się temu, jak
+      poszukiwać wąskich gardeł, jak czytać explain() i na co zwracać uwagę.
+      Dokładnie przyjrzymy się indeksom. Dowiemy się, jak najlepiej
+      wykorzystywać indeksy do sortowania, dlaczego tak ważna jest kolejność pól
+      w indeksie oraz jakie są zasady, którymi powinniśmy się kierować, tworząc
+      indeksy. Aby dodać łyżkę dziegciu do beczki miodu, przybliżę wam również
+      ciemniejsze strony indeksów – zasobożerność i to, jak wpływają na
+      wydajność zapisów. Oprócz tego zobaczymy kilka trików z klastrami (replica
+      set) oraz na co zwrócić uwagę przy używaniu shardingu, a wszystko to
+      podlane przykładami.
+    en: |-
+      Probably every one of us has reached the point in a project where
+      performance goes into a nosedive. That's when the witch hunt begins, also
+      known as the quest for the lost grail. I'll try to take you on one such
+      journey: we'll look for performance reserves in MongoDB. We'll look at how
+      to hunt for bottlenecks, how to read explain() and what to pay attention
+      to. We'll take a close look at indexes: how best to use them for sorting,
+      why the order of fields in an index matters so much, and what rules to
+      follow when creating indexes. To add a fly to the ointment, I'll also show
+      you the darker side of indexes: how resource-hungry they are and how they
+      affect write performance. On top of that, we'll see a few tricks with
+      clusters (replica sets) and what to watch out for when using sharding,
+      all served with examples.
+
+- title: Polyglot Persistence
+  recordings:
+    - event: Boiling Frogs
+      date: 2018-03-24
+      url: https://www.youtube.com/watch?v=JcuvTNcVJDA
+    - event: JDD
+      date: 2016-10-10
+      url: https://www.youtube.com/watch?v=jdI8i40bMlY
+    - event: Confitura
+      date: 2016-07-02
+      url: https://www.youtube.com/watch?v=5MMZDa_Y8kY
+    - event: JUG Łódź
+      date: 2016-05-20
+      url: https://www.youtube.com/watch?v=webxyDf0kZk
+  tags: [NoSQL, MongoDB, Redis, Neo4j]
+  abstract:
+    pl: |-
+      Według badań amerykańskich naukowców, 90% architektur aplikacji na tym
+      świecie składa się z warstwy prezentacji, warstwy tzw. „logiki
+      biznesowej” oraz bazy danych. Z tych 90 procent 90% aplikacji cieszy się
+      z posiadania jednej centralnej bazy danych, bazy od zadań specjalnych
+      i banalnych. Bazy, która staje się z czasem warstwą integracji w miarę, jak
+      system ewoluuje. Staje się także uchem igielnym waszej skalowalności.
+      Podczas prezentacji spróbuję was skonfrontować z ideą wielu baz danych
+      w jednym systemie. Odpowiedzieć na pytanie, kiedy i czy w ogóle to ma
+      sens, porozmawiać o pewnych wzorcach, które pozwolą wam pozostać przy
+      zdrowych zmysłach oraz cenie, jaką trzeba zapłacić za wejście w świat
+      polyglot persistence. Pokażę też i dobre strony takiego podejścia do
+      architektury. A to wszystko na przykładzie, który postaram się
+      zrekonstruować na waszych oczach, zastępując bazę relacyjną bazą
+      dokumentową, „klucz-wartość” i grafem.
+
+      P.S. Tak na serio to żartowałem z tymi amerykańskimi naukowcami… to byli
+      radzieccy.
+    en: |-
+      According to research by American scientists, 90% of the world's
+      application architectures consist of a presentation layer, a so-called
+      "business logic" layer and a database. Of those 90 percent, 90% of
+      applications enjoy having a single central database, a database for
+      special and mundane tasks alike. A database that, as the system evolves,
+      gradually becomes its integration layer. It also becomes the bottleneck
+      of your scalability. In this talk I will try to confront you with the
+      idea of many databases in one system: to answer the question of when, and
+      whether at all, it makes sense, to talk about some patterns that will
+      help you stay sane, and about the price you have to pay to enter the
+      world of polyglot persistence. I'll also show the good sides of this
+      approach to architecture. All of it on an example that I'll try to
+      rebuild before your eyes, replacing a relational database with a document
+      database, a key-value store and a graph.
+
+      P.S. Seriously, I was joking about the American scientists… they were
+      Soviet.
+
+- title: MongoDB in a nutshell
+  slides: https://wsztajerowski.github.io/mongodb-in-a-nutshell/
+  pdf: https://wsztajerowski.github.io/mongodb-in-a-nutshell/slides.pdf
+  repo: https://github.com/wsztajerowski/mongodb-in-a-nutshell
+  recordings:
+    - event: "Kielce JUG #7"
+      date: 2017-11-23
+      url: https://www.youtube.com/watch?v=PL9RJFd3RiI
+    - event: JUG Łódź
+      date: 2015-10-08
+      url: https://www.youtube.com/watch?v=2ozrpTWz2Bs
+  tags: [MongoDB, NoSQL, Indexes, Replication]
+  abstract:
+    pl: |-
+      Obiło Ci się o uszy MongoDB, ale nie masz zielonego pojęcia, jak (i kiedy)
+      jej używać? Pomogę Ci zrozumieć podstawowe koncepcje MongoDB i to, czym
+      różni się od świata relacyjnych baz danych.
+
+      Podczas tej sesji spojrzymy na MongoDB z perspektywy programisty Javy
+      i odpowiemy na kilka pytań. Do czego możemy używać MongoDB? Co może dać nam
+      MongoDB, czego nie dadzą tradycyjne relacyjne bazy danych? Kiedy jej NIE
+      używać?
+
+      Dodatkowo spróbuję wyjaśnić, jak transakcje i ograniczenia (constraints)
+      wyglądają z punktu widzenia MongoDB i jakie niosą ze sobą konsekwencje.
+
+      Na koniec porozmawiamy o językach silnie typowanych i bazach danych bez
+      schematu (schemaless).
+    en: |-
+      So you have heard about MongoDB but have no bloody idea how (or when) to
+      use it? Let me help you understand the basic concepts of MongoDB and how it
+      differs from the RDBMS world.
+
+      In this session we are going to look at MongoDB from a Java developer's
+      perspective and answer a few questions. What can we use MongoDB for? What
+      can MongoDB give us that traditional relational databases can't? When NOT
+      to use it?
+
+      In addition, I will try to clarify what transactions and constraints look
+      like from MongoDB's point of view and what consequences come with them.
+
+      Last but not least, we'll talk about strongly typed languages and
+      schemaless databases.

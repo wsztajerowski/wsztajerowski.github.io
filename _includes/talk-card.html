@@ -1,4 +1,7 @@
-{%- comment -%} One talk from _talks/, in the page's language. {%- endcomment -%}
+{%- comment -%}
+  One talk from _data/talks.yml, in the page's language. Only the title is always
+  there; every other part shows up when the entry has it.
+{%- endcomment -%}
 {%- assign talk = include.talk -%}
 {%- assign title = talk.title[include.lang] | default: talk.title -%}
 <article class="card talk">
@@ -7,14 +10,36 @@
   {%- assign subtitle = talk.subtitle[include.lang] | default: talk.subtitle %}
   <p class="sub">{{ subtitle }}</p>
   {%- endif %}
+  {%- if talk.abstract %}
   <div class="body">{{ talk.abstract[include.lang] | markdownify }}</div>
+  {%- endif %}
   {%- include tags.html tags=talk.tags %}
+  {%- if talk.slides or talk.pdf or talk.repo %}
   <div class="links">
+    {%- if talk.slides %}
     <a class="btn primary" href="{{ talk.slides }}">{{ include.t.live_slides }}</a>
+    {%- endif %}
+    {%- if talk.pdf %}
     <a class="btn" href="{{ talk.pdf }}">{{ include.t.download_pdf }}</a>
+    {%- endif %}
+    {%- if talk.repo %}
     <a class="btn" href="{{ talk.repo }}">{{ include.t.repository }}</a>
-    {%- for rec in talk.recordings %}
-    <a class="btn" href="{{ rec.url }}">{{ include.t.recording }}{% if rec.event %} · {{ rec.event }}{% endif %}</a>
-    {%- endfor %}
+    {%- endif %}
   </div>
+  {%- endif %}
+  {%- if talk.recordings and talk.recordings.size > 0 %}
+  <section class="recordings">
+    <h3>{{ include.t.recordings }}</h3>
+    <ul>
+      {%- for rec in talk.recordings %}
+      <li><a href="{{ rec.url }}">
+        {%- if rec.event %}<span class="event">{{ rec.event }}</span>{% endif %}
+        {%- if rec.date %}<time datetime="{{ rec.date | date: '%Y-%m-%d' }}">{{ rec.date | date: include.t.date_format }}</time>{% endif %}
+        {%- unless rec.event or rec.date %}<span class="event">YouTube</span>{% endunless %}
+        <span class="arrow" aria-hidden="true">↗</span>
+      </a></li>
+      {%- endfor %}
+    </ul>
+  </section>
+  {%- endif %}
 </article>

@@ -18,8 +18,8 @@ The PL | EN switch in the top bar keeps you on the same tab. The theme switch
 follows the system setting until clicked, then remembers the choice in the
 browser.
 
-**Content and rendering are separate.** Content is YAML under `_talks/`,
-`_projects/`, `_data/profile.yml` and `_data/i18n.yml` (interface text).
+**Content and rendering are separate.** Content is YAML in `_data/`:
+`talks.yml`, `projects.yml`, `profile.yml` and `i18n.yml` (interface text).
 Rendering is `_layouts/`, `_includes/`, `assets/` and the one-line pages in
 `talks/`, `projects/`, `about/` and `index.html`. Adding or editing content
 never touches the rendering side.
@@ -31,58 +31,59 @@ fails if one is missing, so a half-translated entry can't be merged.
 
 ### Add a talk
 
-Create `_talks/<repo-name>.md`, all in the front matter:
+Talks live in `_data/talks.yml`, one list entry each. **The Talks tab shows
+them in the order they are listed**: paste the new entry where it should
+appear, and move an entry to reorder. There is no numbering to keep up.
 
 ```yaml
----
-title:
-  pl: Maszynka do Mielenia Złudzeń
-  en: The Illusion Grinder
-subtitle:                                                     # optional
-  pl: Cztery Kręgi Testowego Piekła dla Kodu Współbieżnego w Javie
-  en: Four circles of testing hell for concurrent Java
-order: 1                                                      # required, unique
-slides: https://wsztajerowski.github.io/illusion-grinder/
-pdf: https://wsztajerowski.github.io/illusion-grinder/slides.pdf
-repo: https://github.com/wsztajerowski/illusion-grinder
-recordings:                                                   # optional, one per event
-  - event: JUG Łódź                                           # shown on the button
-    url: https://www.youtube.com/watch?v=…
-tags: [JUnit, Fray, jcstress, JMH]                            # optional
-abstract:
-  pl: |-
-    Abstrakt po polsku, w Markdownie. Pusta linia zaczyna nowy akapit.
-  en: |-
-    The abstract in English, in Markdown. Blank lines make paragraphs.
----
+- title:
+    pl: Maszynka do Mielenia Złudzeń
+    en: The Illusion Grinder
+  subtitle:                                                     # optional
+    pl: Cztery Kręgi Testowego Piekła dla Kodu Współbieżnego w Javie
+    en: Four circles of testing hell for concurrent Java
+  slides: https://wsztajerowski.github.io/illusion-grinder/    # optional
+  pdf: https://wsztajerowski.github.io/illusion-grinder/slides.pdf  # optional
+  repo: https://github.com/wsztajerowski/illusion-grinder       # optional
+  recordings:                                                   # optional, one per event
+    - event: JUG Łódź                                           # optional: where
+      date: 2025-03-12                                          # optional: YYYY-MM-DD
+      url: https://www.youtube.com/watch?v=…                    # required
+  tags: [JUnit, Fray, jcstress, JMH]                            # optional
+  abstract:                                                     # optional
+    pl: |-
+      Abstrakt po polsku, w Markdownie. Pusta linia zaczyna nowy akapit.
+    en: |-
+      The abstract in English, in Markdown. Blank lines make paragraphs.
 ```
 
-**`order` decides where the talk appears: `1` is at the top.** It is required
-and must be unique, so a new talk usually means bumping the others by one.
+Only `title` is required; every other part of the card appears only when the
+entry has it, so a talk without published slides or a repo yet is fine.
 `title` and `subtitle` may also be plain text when they stay the same in both
-languages (as the SSI talk's original title does).
+languages (as the SSI talk's original title does). Recordings are listed
+under the buttons, one row per event (place, date, link), in the order
+written. Quote a name that contains ` #` (`event: "Kielce JUG #7"`): in
+YAML, unquoted, the rest of the line is a comment.
 
-Open a PR. The check builds the site, validates the file and tests every
+Open a PR. The check builds the site, validates the entry and tests every
 link, including the new slides, PDF and repo, so **publish the talk's own
 Pages site before merging the entry** (see below).
 
 ### Add a project
 
-Create `_projects/<repo-name>.md`:
+Projects live in `_data/projects.yml`, shown in the order listed, the same
+way:
 
 ```yaml
----
-title: Benchmark as a Service (BaaS)     # or pl:/en: if it translates
-repo: https://github.com/wsztajerowski/benchmark-as-a-service
-homepage: https://…      # optional
-order: 1                 # optional; projects without one go last
-tags: [JMH, jcstress]    # optional
-description:
-  pl: |-
-    Jedno–dwa zdania o projekcie.
-  en: |-
-    One or two sentences on what it is.
----
+- title: Benchmark as a Service (BaaS)     # or pl:/en: if it translates
+  repo: https://github.com/wsztajerowski/benchmark-as-a-service
+  homepage: https://…      # optional
+  tags: [JMH, jcstress]    # optional
+  description:
+    pl: |-
+      Jedno–dwa zdania o projekcie.
+    en: |-
+      One or two sentences on what it is.
 ```
 
 ### Change interface text
@@ -104,20 +105,19 @@ sips -s format jpeg -s formatOptions 82 -Z 480 original.png --out assets/img/<na
 
 ### Remove something
 
-Delete its file.
+Delete its entry from the list.
 
 ## Validation
 
 `_plugins/validate_data.rb` runs inside every build, locally and in CI, and
 stops the build with a list of problems if:
 
-* a required field is missing: talks need `title`, `order`, `slides`, `pdf`,
-  `repo` and `abstract`; projects need `title`, `repo` and `description`;
+* a required field is missing: talks need `title`; projects need `title`,
+  `repo` and `description`;
 * a translated field lacks a language, or names one the site doesn't speak;
-* text was left below the front matter (it would be silently ignored);
 * a field name is unknown (it's usually a typo, like `recoding`);
 * a link isn't an `http(s)://` URL;
-* two talks share an `order`, or `order` isn't a positive whole number;
+* a recording lacks an http(s) `url`, or its `date` isn't written YYYY-MM-DD;
 * `_data/i18n.yml` languages don't all define the same interface keys;
 * `_data/profile.yml` is missing its name or photo, a bio entry lacks its
   `lang`, `tagline` or `text`, a language has no bio or two, or a link lacks a
@@ -150,7 +150,7 @@ so its URLs are always:
 project site of that repo would take over the path. The reverse holds too:
 **never name a repo `talks`, `projects` or `about`**, or its project site
 would replace that tab. Renaming a talk repo
-changes both URLs, so update its `_talks/` entry in the same breath; the
+changes both URLs, so update its entry in `_data/talks.yml` in the same breath; the
 weekly link check exists to catch the case where that's forgotten.
 
 ## Run it locally

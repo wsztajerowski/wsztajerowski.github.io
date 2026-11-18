@@ -1,8 +1,7 @@
-{%- comment -%} Talks tab: every _talks/ entry, sorted by `order` (1 = top). {%- endcomment -%}
-{%- assign talks = site.talks | sort: "order" %}
+{%- comment -%} Talks tab: every entry of _data/talks.yml, in the order listed. {%- endcomment -%}
 <h1 class="visually-hidden">{{ include.t.tab_talks }}</h1>
 <div class="stack">
-  {%- for talk in talks %}
+  {%- for talk in site.data.talks %}
   {% include talk-card.html talk=talk lang=include.lang t=include.t %}
   {%- endfor %}
 </div>
