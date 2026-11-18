@@ -170,6 +170,10 @@ main.wrap { padding-top: 2rem; }
 .card h2 a { text-decoration: none; }
 .card h2 a:hover { text-decoration: underline; }
 .sub { color: var(--c-orange); font-style: italic; margin: 0 0 0.9rem; }
+/* Without a subtitle, keep the same gap between the title and the text. */
+.card h2 + .body { margin-top: 0.9rem; }
+/* Optional parts: whatever ends the card adds no trailing gap. */
+.card > :last-child { margin-bottom: 0; }
 .body { color: var(--dim); }
 .body p { margin: 0 0 1.1rem; }
 .body code { font-family: 'Fira Code', ui-monospace, monospace; font-size: 0.88em; }
@@ -214,6 +218,43 @@ main.wrap { padding-top: 2rem; }
   background: color-mix(in srgb, var(--c-green) 8%, transparent);
 }
 .btn.primary:hover { border-color: var(--c-green); background: color-mix(in srgb, var(--c-green) 15%, transparent); }
+
+/* Recordings: one row per event — place, date, link. */
+.recordings { margin-top: 1.4rem; }
+.links + .recordings { margin-top: 1.6rem; }
+.recordings h3 {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--faint);
+  margin: 0 0 0.3rem;
+}
+.recordings ul { list-style: none; padding: 0; margin: 0; }
+.recordings li { border-top: 1px solid var(--line); }
+/* The whole row is the link. */
+.recordings li a {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 0.2rem 0.9rem;
+  padding: 0.5rem 0.5rem;
+  margin: 0 -0.5rem;
+  border-radius: 6px;
+  text-decoration: none;
+  transition: background 0.15s ease;
+}
+.recordings li a:hover { background: var(--btn-hover); }
+.recordings li a:hover .event { color: var(--c-blue); }
+.recordings .event { font-weight: 600; }
+.recordings time {
+  color: var(--dim);
+  font-family: 'Fira Code', ui-monospace, monospace;
+  font-size: 0.85rem;
+  font-variant-numeric: tabular-nums;
+}
+.recordings .arrow { margin-left: auto; color: var(--faint); }
+.recordings li a:hover .arrow { color: var(--c-blue); }
 
 /* About */
 .about { display: grid; grid-template-columns: 14rem 1fr; gap: 2rem; align-items: start; }

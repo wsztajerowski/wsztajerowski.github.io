@@ -1,4 +1,4 @@
-{%- comment -%} One project from _projects/, in the page's language. {%- endcomment -%}
+{%- comment -%} One project from _data/projects.yml, in the page's language. {%- endcomment -%}
 {%- assign project = include.project -%}
 {%- assign title = project.title[include.lang] | default: project.title -%}
 <article class="card project">

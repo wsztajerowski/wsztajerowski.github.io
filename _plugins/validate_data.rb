@@ -2,11 +2,9 @@
 # malformed, so a bad data PR goes red before it can be merged instead of
 # rendering a broken or half-translated card.
 #
-# It checks the front matter as written, not doc.data: Jekyll fills in some
-# keys on its own (a missing `title` becomes the file name), which would hide
-# exactly the mistakes this is here to catch.
+# Talks and projects are lists in _data/talks.yml and _data/projects.yml; the
+# site shows them in the order written, so there is no `order` field.
 
-require "yaml"
 require "date"
 
 module DataValidation
@@ -17,32 +15,22 @@ module DataValidation
   # same in every language (a product name, a talk's original title).
   SCHEMAS = {
     "talks" => {
-      required: %w[title order slides pdf repo abstract],
-      optional: %w[subtitle recordings tags],
+      required: %w[title],
+      optional: %w[subtitle slides pdf repo abstract recordings tags],
       urls: %w[slides pdf repo],
       localized: %w[abstract],
       translatable: %w[title subtitle],
-      order_required: true,
     },
     "projects" => {
       required: %w[title repo description],
-      optional: %w[order homepage tags],
+      optional: %w[homepage tags],
       urls: %w[repo homepage],
       localized: %w[description],
       translatable: %w[title],
-      order_required: false,
     },
   }.freeze
 
   module_function
-
-  def front_matter(path)
-    text = File.read(path)
-    match = text.match(/\A---\s*\n(.*?)\n---\s*\n?(.*)\z/m)
-    return [nil, text] unless match
-
-    [YAML.safe_load(match[1], permitted_classes: [Date]) || {}, match[2]]
-  end
 
   def check_localized(file, key, value, langs, errors)
     unless value.is_a?(Hash)
@@ -57,18 +45,25 @@ module DataValidation
     errors << "#{file}: `#{key}` has unknown language(s) #{extra.join(', ')} — the site speaks #{langs.join(', ')}" if extra.any?
   end
 
-  def check_collection(site, name, schema, langs, errors)
-    collection = site.collections[name]
-    return errors << "_#{name}/ is missing" unless collection
+  # How an entry is named in error messages: its position, plus its title
+  # when it has one, e.g. `_data/talks.yml, entry 3 (MongoDB in a nutshell)`.
+  def entry_label(name, data, index)
+    title = data["title"].is_a?(Hash) ? data["title"].values.first : data["title"]
+    label = "_data/#{name}.yml, entry #{index + 1}"
+    title.to_s.strip.empty? ? label : "#{label} (#{title})"
+  end
 
-    orders = Hash.new { |h, k| h[k] = [] }
-    collection.docs.each do |doc|
-      file = doc.relative_path
-      data, body = front_matter(doc.path)
+  def check_list(site, name, schema, langs, errors)
+    list = site.data[name]
+    return errors << "_data/#{name}.yml is missing" if list.nil?
+    return errors << "_data/#{name}.yml must be a list: start each entry with `- title: …`" unless list.is_a?(Array)
+
+    list.each_with_index do |data, index|
       unless data.is_a?(Hash)
-        errors << "#{file}: no front matter (it must start with a --- block)"
+        errors << "_data/#{name}.yml, entry #{index + 1}: must be a set of fields starting with `- title: …`"
         next
       end
+      file = entry_label(name, data, index)
 
       unknown = data.keys - schema[:required] - schema[:optional]
       errors << "#{file}: unknown field(s) #{unknown.join(', ')} — typo? " \
@@ -96,28 +91,22 @@ module DataValidation
         errors << "#{file}: `#{key}` must be an http(s) URL, got #{data[key].inspect}" unless data[key].to_s.match?(URL)
       end
 
-      if data.key?("order") || schema[:order_required]
-        order = data["order"]
-        if order.is_a?(Integer) && order.positive?
-          orders[order] << file
-        elsif !order.nil?
-          errors << "#{file}: `order` must be a positive whole number, got #{order.inspect}"
-        end
-      end
-
       if data.key?("recordings")
         recs = data["recordings"]
         if !recs.is_a?(Array) || recs.empty?
           errors << "#{file}: `recordings` must be a list, e.g.\n" \
-                    "      recordings:\n        - event: JUG Łódź\n          url: https://www.youtube.com/watch?v=…"
+                    "      recordings:\n        - event: JUG Łódź\n          date: 2025-03-12\n          url: https://www.youtube.com/watch?v=…"
         else
           recs.each_with_index do |rec, i|
             unless rec.is_a?(Hash) && rec["url"].to_s.match?(URL)
               errors << "#{file}: recordings[#{i}] needs an http(s) `url`"
               next
             end
-            extra = rec.keys - %w[event url]
-            errors << "#{file}: recordings[#{i}] has unknown field(s) #{extra.join(', ')} — allowed: event, url" if extra.any?
+            if rec.key?("date") && !rec["date"].is_a?(Date)
+              errors << "#{file}: recordings[#{i}] `date` must be YYYY-MM-DD, got #{rec['date'].inspect}"
+            end
+            extra = rec.keys - %w[event date url]
+            errors << "#{file}: recordings[#{i}] has unknown field(s) #{extra.join(', ')} — allowed: event, date, url" if extra.any?
           end
         end
       end
@@ -125,15 +114,6 @@ module DataValidation
       if data.key?("tags") && !(data["tags"].is_a?(Array) && data["tags"].all? { |t| t.is_a?(String) })
         errors << "#{file}: `tags` must be a list of strings, e.g. [JUnit, JMH]"
       end
-
-      unless body.strip.empty?
-        text_key = schema[:localized].last
-        errors << "#{file}: text below the front matter is ignored — move it into `#{text_key}` (one entry per language)"
-      end
-    end
-
-    orders.each do |order, files|
-      errors << "#{files.join(' and ')}: share `order: #{order}` — each must be unique" if files.size > 1
     end
   end
 
@@ -194,7 +174,7 @@ Jekyll::Hooks.register :site, :post_read do |site|
   i18n = site.data["i18n"]
   DataValidation.check_i18n(i18n, errors)
   langs = i18n.is_a?(Hash) ? Array(i18n["languages"]) : []
-  DataValidation::SCHEMAS.each { |name, schema| DataValidation.check_collection(site, name, schema, langs, errors) }
+  DataValidation::SCHEMAS.each { |name, schema| DataValidation.check_list(site, name, schema, langs, errors) }
   DataValidation.check_profile(site, langs, errors)
   next if errors.empty?
 

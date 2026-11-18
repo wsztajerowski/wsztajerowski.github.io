@@ -4,13 +4,8 @@ url: https://wsztajerowski.github.io
 baseurl: ""
 lang: en
 
-# Each talk and project is one Markdown file: front matter for the facts, the
-# body for the abstract/description. See README.md for the fields.
-collections:
-  talks:
-    output: false
-  projects:
-    output: false
+# Talks and projects are lists in _data/talks.yml and _data/projects.yml,
+# shown in the order written. See README.md for the fields.
 
 markdown: kramdown
 kramdown:
